@@ -1,0 +1,61 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Alexandre MENU Premium - @alexjbbx_", "DarkTheme")
+
+local Inicio = Window:NewTab("Inicio")
+local InicioSection = Inicio:NewSection("Inicio")
+InicioSection:NewLabel("Alexandre Cabrita - Criador do Mod MENU")
+InicioSection:NewLabel("Lara Cabrita - Criador do Mod MENU/ ajudante")
+InicioSection:NewLabel("Primeira versao do Mod MENU")
+InicioSection:NewLabel("Segunda verao somentepara premiuns")
+InicioSection:NewLabel("Primeira versao gratis")
+
+local Jogador = Window:NewTab("Jogador")
+local JogadorSection = Jogador:NewSection("Opcoes Do Jogador local")
+JogadorSection:NewSlider("Velocidade", "Aumenta a velocidade do player", 1000, 16, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+JogadorSection:NewSlider("Altura do salto", "Aumenta a altura do salto", 1000, 50, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+JogadorSection:NewButton("Fugir ADM", "Aumenta a velocidade e salto do seu player", function()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 110000
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 110000
+end)
+JogadorSection:NewButton("Fugir SET", "Mete a velocidade e a altura do salto padrão", function()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end)
+local Jogador2Section = Jogador:NewSection("Opcoes Dos Jogadores")
+Plr = {}
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(Plr,v.Name)
+end
+Jogador2Section:NewDropdown("Selecione", "Selecione um player", Plr, function(t)
+    PlayerTP = t
+end)
+Jogador2Section:NewButton("Teletransportar", "Teletransporta voce ate ao player selecionado", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].character.HumanoidRootPart.CFrame
+end)
+local PremiumSection = Jogador:NewSection("Opcoes Premium")
+
+local Jogadores = Window:NewTab("Jogadores ON")
+local JogadoresSection = Jogadores:NewSection("Jogadores Online")
+JogadoresSection:NewDropdown("Ver Players Online", "Aqui voce pode ver os players online", Plr, function(t)
+
+end)
+local Player = Window:NewTab("Conta")
+local PlayerSection = Player:NewSection("Conta")
+PlayerSection:NewLabel("PAX_RASPADINHA2K")
+PlayerSection:NewLabel("Premium 2.0")
+PlayerSection:NewLabel("Desenvolvedor")
+
+local Definicoes = Window:NewTab("Definicoes")
+local DefinicoesSection = Definicoes:NewSection("Definicoes")
+DefinicoesSection:NewKeybind("Selecione um botao para ocultar o hack", "Aqui voce pode escolher o botao", Enum.KeyCode.E, function()
+	Library:ToggleUI()
+end)
+local Definicoes2Section = Definicoes:NewSection("Caso queira outra Library")
+Definicoes2Section:NewButton("Library BETA", "Executa a nossa library BETA em testes", function()
+    
+end)
